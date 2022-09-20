@@ -1,20 +1,20 @@
 o1 = pi/2 + pi/6;
 o2 = pi/2 + pi/6;
-l1 = 200;
-l2 = 300;
+l1 = 100;
+l2 = 200;
 l3 = 50;
 
 tor_measured = [-0.6;-0.6]
 force_e = [0;0]
 
 max_tor = 1.66*1000;
-f_disp_k = 10;
+f_disp_k = 5;
 
-for i = -400:80:400
+for i = -200:40:200
     
 %ik part
 x_end = i;
-y_end = -350;
+y_end = -220;
 
 t1 = atan2(y_end,x_end);
 tr = pi/2-t1;
@@ -60,7 +60,7 @@ j_mat_t_inv = inv(j_mat_t)
 scatter(x_end,y_end,3,'filled','red')
 hold on
 
-for s = 1:200
+for s = 1:150
 tor_tmp =  [max_tor*(rand-0.5)*2;max_tor*(rand-0.5)*2]
 force_e1 = j_mat_t_inv * tor_tmp;
 quiver(x_end,y_end,force_e1(1)*f_disp_k,force_e1(2)*f_disp_k);
@@ -69,14 +69,14 @@ end
 hold on
 end
 axis equal
-axis([-600 600 -500 -200])
+axis([-400 400 -550 50])
 grid on
 
-quiver(-590,-250,100,0);
+quiver(-390,-150,50,0);
 
 xlabel ("X position /mm")
 ylabel ("Y position /mm")
-tt = title ({'Foot maxium output force range when';'$x_{end}=-400\sim 400 \ mm,\  y_{end}=-350\ mm$'})
+tt = title ({'Foot maxium output force range when';'$x_{end}=-200\sim 200 \ mm,\  y_{end}=-220\ mm$'})
 set(tt, 'Interpreter', 'latex');
 grid on
 
